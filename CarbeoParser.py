@@ -6,6 +6,7 @@ import bs4 as BeautifulSoup
 import re
 import json
 import os
+import utilities.DatabaseHandler as db
 
 
 class CarbeoParser:
@@ -27,11 +28,13 @@ class CarbeoParser:
     #     dict[name] = regexedPrice
     # print("dict[",name,"]:",dict[name])
 
-    def __init__(self, aUrl, aFileName):
+    def __init__(self, aUrl, aCfgDict):
         myCompiledRegex = re.compile(r'(^\d+([,.]\d{1,3})?)')
         aBunchOfTags = self.getHtmlContent(aUrl)
         myDict = self.processHtmlContent(aBunchOfTags, myCompiledRegex)
-        self.writeJson(aFileName, myDict)
+        #self.writeJson(aFileName, myDict)
+        self.writeToDb(myDict, aCfgDict['host'], aCfgDict['port'], aCfgDict[
+                       'dbname'], aCfgDict['user'], aCfgDict['password'])
 
     def getHtmlContent(self, aUrl):
         myHtml = urlopen(aUrl)
@@ -56,3 +59,8 @@ class CarbeoParser:
         if os.access(os.path.dirname(aFileName), os.W_OK):
             with open(aFileName, 'w', encoding='utf-8') as f:
                 json.dump(aDict, f, indent=4)
+
+    def writeToDb(self, aDict, aHost, aPort, aDbname, aUser, aPassword=''):
+        with db.DatabaseHandler(aHost, aPort,
+                                aDbname, aUser, aPassword) as myDb:
+            myDb.addPrices('daily_FR', aDict)
