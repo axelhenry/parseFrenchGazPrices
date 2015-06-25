@@ -6,7 +6,7 @@ writing it locally in a postgre database
 
 ##Usage
 
-python3 parseFrench.py --conf_file /path/to/conf_file.yaml
+python3 launchParsing.py --conf_file /path/to/conf_file.yaml
 
 --conf_file isn't mandatory, if you're not providing it, the script will try to use config.yaml located in the directory
 
