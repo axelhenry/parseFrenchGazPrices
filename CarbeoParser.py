@@ -4,8 +4,8 @@
 from urllib.request import urlopen
 import bs4 as BeautifulSoup
 import re
-import json
-import os
+# import json
+# import os
 import utilities.DatabaseHandler as db
 
 
@@ -54,11 +54,11 @@ class CarbeoParser:
             aDict[name] = regexedPrice
         return aDict
 
-    def writeJson(self, aFileName, aDict):
-        # print('dirname : ', os.path.dirname(aFileName))
-        if os.access(os.path.dirname(aFileName), os.W_OK):
-            with open(aFileName, 'w', encoding='utf-8') as f:
-                json.dump(aDict, f, indent=4)
+    # def writeJson(self, aFileName, aDict):
+    #     # print('dirname : ', os.path.dirname(aFileName))
+    #     if os.access(os.path.dirname(aFileName), os.W_OK):
+    #         with open(aFileName, 'w', encoding='utf-8') as f:
+    #             json.dump(aDict, f, indent=4)
 
     def writeToDb(self, aDict, aHost, aPort, aDbname, aUser, aPassword=''):
         with db.DatabaseHandler(aHost, aPort,

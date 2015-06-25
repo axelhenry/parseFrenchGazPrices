@@ -16,6 +16,7 @@ To use this script you'll need:
 - python3
 - psycopg2
 - pyyaml
+- BeautifulSoup4
 
 ##Requirements
 
