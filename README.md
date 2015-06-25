@@ -19,6 +19,6 @@ To use this script you'll need:
 
 ##Requirements
 
-You'll also need to install PostgreSQL, and create two tables
-CREATE TABLE regional_id(id serial PRIMARY KEY, regional_name TEXT UNIQUE);
-CREATE TABLE gazprices(id serial PRIMARY KEY, gaz_name TEXT, gaz_price FLOAT, regional_id integer REFERENCES regional_id (id));
+You'll also need to install PostgreSQL, and create two tables:
+- CREATE TABLE regional_id(id serial PRIMARY KEY, regional_name TEXT UNIQUE);
+- CREATE TABLE gazprices(id serial PRIMARY KEY, gaz_name TEXT, gaz_price FLOAT, regional_id integer REFERENCES regional_id (id));
