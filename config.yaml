@@ -1,0 +1,8 @@
+parser:
+    url: http://www.carbeo.com/index.php/prixmoyens
+postgresql:
+    host: localhost
+    port: 5432
+    dbname: gazprices
+    user: creator
+    password: ""
